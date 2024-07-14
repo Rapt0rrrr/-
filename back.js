@@ -2,8 +2,8 @@
 window.addEventListener("DOMContentLoaded", () => {
 	const topButton = document.getElementById("back_to_top");
 
-	// Вешаем событие скролла на весь документ
-	document.addEventListener("scroll", () => {
+	// Функция, отрабатывающая при скролле страницы
+	function onScrollDocument() {
 		const scrolledHeight = document.documentElement.scrollTop;
 		const TRIGGER_HEIGHT = 200;
 
@@ -12,10 +12,15 @@ window.addEventListener("DOMContentLoaded", () => {
 		} else {
 			topButton.classList.remove("active");
 		}
-	});
+	}
 
-	// Вешаем событие клика на кнопку
-	topButton.addEventListener("click", () => {
+	// Функция, отрабатывающая по клику на кнопку скрола наверх
+	function onClickTopButton() {
 		window.scrollTo({ top: 0, behavior: "smooth" });
-	});
+	}
+
+	// Вешаем событие скролла на весь документ
+	document.addEventListener("scroll", onScrollDocument);
+	// Вешаем событие клика на кнопку
+	topButton.addEventListener("click", onClickTopButton);
 });
