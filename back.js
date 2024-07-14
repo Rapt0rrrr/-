@@ -1,16 +1,15 @@
-// Появдение кнопки при скроле страницы
-$(window).scroll(function () { // начало прокрутки
-    let scrolled = $(window).scrollTop(); // Считаети сколько было прокручено
+// Нужна такая конструкция для того, чтобы скрипты отрабатывали только после полной загрузки DOM дерева
+window.addEventListener("DOMContentLoaded", () => {
+	const topButton = document.getElementById("back_to_top");
 
-    if(scrolled > 200) { // Если высота прокрутки больше ... , значит показать кнопку
-        $('#back_to_top').addClass('active');
-    } else {
-        $('#back_to_top').removeClass('active');
-    }
-});
+	document.addEventListener("scroll", () => {
+		const scrolledHeight = document.documentElement.scrollTop;
+		const TRIGGER_HEIGHT = 200;
 
-// активация кнопки при нажатии
-$('#back_to_top').click(function () {
-    $('body,html').animate({scrollTop: 0}, 900); // 900 милисекунд скоргость анимации
+		if (scrolledHeight > TRIGGER_HEIGHT) {
+			topButton.classList.add("active");
+		} else {
+			topButton.classList.remove("active");
+		}
+	});
 });
-  
